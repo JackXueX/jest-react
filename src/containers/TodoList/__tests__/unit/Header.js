@@ -3,6 +3,11 @@ import Header from '../../components/Header';
 import { shallow } from 'enzyme'
 
 describe('component APP test', () => {
+  it('Header 渲染样式正常', () => {
+    const wrapper = shallow(<Header />);
+    expect(wrapper).toMatchSnapshot();
+  });
+
   it('Header 组件包含一个 input 框', () => {
     const wrapper = shallow(<Header />);
     const inputEle = wrapper.find("[data-test='input']");
