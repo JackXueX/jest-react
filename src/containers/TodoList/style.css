@@ -3,6 +3,10 @@
   padding: 0;
 }
 
+body {
+  background: #cdcdcd;
+}
+
 .header {
   line-height: 60px;
   background: #333;
@@ -25,4 +29,64 @@
   line-height: 24px;
   border-radius: 5px;
   padding: 0 10px;
+}
+
+.undo-list {
+  margin: 0 auto;
+  width: 600px;
+}
+
+.undo-list-title {
+  margin: 10px 0;
+  line-height: 30px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.undo-list-count {
+  float: right;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 12px;
+  text-align: center;
+  background: #e6e6ea;
+  border-radius: 50%;
+}
+
+.undo-list-content {
+  list-style-type: none;
+}
+
+.undo-list-item {
+  line-height: 32px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  background: #fff;
+  border-left: 3px solid #629a9c;
+  text-indent: 10px;
+  border-radius: 3px;
+}
+
+.undo-list-delete {
+  margin-top: 6px;
+  margin-right: 6px;
+  float: right;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  text-indent: 0;
+  background: #e6e6ea;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.undo-list-input {
+  position: relative;
+  top: -2px;
+  width: 100px;
+  line-height: 22px;
+  text-indent: 10px;
+  outline: none;
 }
