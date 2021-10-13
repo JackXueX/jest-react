@@ -35,7 +35,7 @@ class Header extends Component {
           <input 
             placeholder="add todo"
             className="header-input"
-            data-test='input' 
+            data-test='header-input' 
             value={value} 
             onChange={this.handleInputChnage} 
             onKeyUp={this.handleInputKeyUp}
