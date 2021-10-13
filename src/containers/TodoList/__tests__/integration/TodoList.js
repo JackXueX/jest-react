@@ -1,7 +1,9 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { mount } from 'enzyme';
 import TodoList from '../../index';
 import { findTestWrapper } from '../../../../utils/testUtils';
+import store from '../../../../store/createStore';
 
 // eslint-disable-next-line jest/valid-title
 it(`
@@ -9,7 +11,11 @@ it(`
   2. 点击回车
   3. 列表中展示用户输入的内容项
 `, () => {
-  const wrapper = mount(<TodoList />);
+  const wrapper = mount(
+    <Provider store={store}>
+      <TodoList />
+    </Provider>
+  );
   
   const inputElem = findTestWrapper(wrapper, 'header-input');
   const content = 'Dell Lee';
