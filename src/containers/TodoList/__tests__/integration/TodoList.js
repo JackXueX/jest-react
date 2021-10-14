@@ -4,10 +4,12 @@ import { mount } from 'enzyme';
 import TodoList from '../../index';
 import { findTestWrapper } from '../../../../utils/testUtils';
 import store from '../../../../store/createStore';
+// eslint-disable-next-line jest/no-mocks-import
+import axios from '../../__mocks__/axios';
 
 beforeEach(() => {
-  jest.useFakeTimers();
-})
+  axios.success = true;
+});
 
 // eslint-disable-next-line jest/valid-title
 it(`
@@ -47,9 +49,8 @@ it(`
 
 // eslint-disable-next-line jest/valid-title
 it(`
-1. 用户打开页面
-2. 5秒后
-3. 应该展示接口返回的数据
+1. 用户打开页面，请求正常
+2. 应该展示接口返回的数据
 `, (done) => {
   const wrapper = mount(
     <Provider store={store}>
@@ -57,12 +58,32 @@ it(`
     </Provider>
   );
 
-  jest.runAllTimers();
-  expect(setTimeout).toHaveBeenCalledTimes(1);
   process.nextTick(() => {
     wrapper.update();
     const listItem = findTestWrapper(wrapper, 'list-item');
     expect(listItem.length).toBe(1);
+    done();
+  });
+});
+
+// eslint-disable-next-line jest/valid-title
+it(`
+1. 用户打开页面，请求异常
+2. 页面列表无内容，应该能把页面展示出来
+`, (done) => {
+
+  axios.success = false;
+
+  const wrapper = mount(
+    <Provider store={store}>
+      <TodoList />
+    </Provider>
+  );
+
+  process.nextTick(() => {
+    wrapper.update();
+    const listItem = findTestWrapper(wrapper, 'list-item');
+    expect(listItem.length).toBe(0);
     done();
   });
 });
