@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
-import TodoList from './containers/TodoList';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import TodoListPage from './containers/TodoListPage';
+import NotFoundPage from './containers/NotFoundPage';
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <TodoList />
-      </div>
+      <BrowserRouter>
+        <Switch>
+          <Route path='/' exact component={TodoListPage} />
+          <Route component={NotFoundPage} />
+        </Switch>
+      </BrowserRouter>
     )
   }
 }
