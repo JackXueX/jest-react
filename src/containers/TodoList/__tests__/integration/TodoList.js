@@ -5,6 +5,10 @@ import TodoList from '../../index';
 import { findTestWrapper } from '../../../../utils/testUtils';
 import store from '../../../../store/createStore';
 
+beforeEach(() => {
+  jest.useFakeTimers();
+})
+
 // eslint-disable-next-line jest/valid-title
 it(`
   1. 输入框输入内容
@@ -29,4 +33,36 @@ it(`
   const listItems = findTestWrapper(wrapper, 'list-item');
   expect(listItems.length).toEqual(1);
   expect(listItems.text()).toContain(content);
+});
+
+/**
+ * {
+ *  data: [{
+ *    status: 'div,
+ *    value: 'dell lee
+ * }]
+ *  success: true
+ * }
+ */
+
+// eslint-disable-next-line jest/valid-title
+it(`
+1. 用户打开页面
+2. 5秒后
+3. 应该展示接口返回的数据
+`, (done) => {
+  const wrapper = mount(
+    <Provider store={store}>
+      <TodoList />
+    </Provider>
+  );
+
+  jest.runAllTimers();
+  expect(setTimeout).toHaveBeenCalledTimes(1);
+  process.nextTick(() => {
+    wrapper.update();
+    const listItem = findTestWrapper(wrapper, 'list-item');
+    expect(listItem.length).toBe(1);
+    done();
+  });
 });

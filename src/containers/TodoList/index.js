@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import Header from './components/Header';
 import UndoList from './components/UndoList';
 import './style.css';
@@ -14,6 +15,19 @@ class TodoList extends Component {
     this.state = {
       undoList: []
     }
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+      axios.get('/undoList.json').then(res => {
+        console.log("res--", res);
+        this.setState({
+          undoList: res.data
+        })
+      }).catch(e => {
+        console.log(e);
+      });
+    }, 5000);
   }
 
   addUndoItem(value) {
