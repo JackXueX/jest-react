@@ -22,7 +22,7 @@ class Header extends Component {
       <div className="header">
         <div className="header-content">
           TodoList
-          <input 
+          <input
             placeholder="add todo"
             className="header-input"
             data-test='header-input' 

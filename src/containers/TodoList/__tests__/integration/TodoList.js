@@ -6,6 +6,7 @@ import { findTestWrapper } from '../../../../utils/testUtils';
 import store from '../../../../store/createStore';
 
 beforeEach(() => {
+  // 模拟setTimeout
   jest.useFakeTimers();
 })
 
@@ -57,8 +58,16 @@ it(`
     </Provider>
   );
 
+  /*
+  setTimeout(() => {
+    // 业务逻辑
+  }, 5000)
+  */
+  // 此段代码主要模拟的是5秒后的过程
   jest.runAllTimers();
   expect(setTimeout).toHaveBeenCalledTimes(1);
+
+  // 让代码异步为异步测试用例
   process.nextTick(() => {
     wrapper.update();
     const listItem = findTestWrapper(wrapper, 'list-item');
